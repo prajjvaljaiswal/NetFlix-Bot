@@ -1,6 +1,8 @@
 import React, { useState, useRef } from 'react'
 import Header from './Header'
-import { Validation } from '../utils/Validation';
+import { Validation } from '../utils/validation';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../utils/Firebase.js';
 
 export const Login = () => {
 
@@ -17,6 +19,38 @@ export const Login = () => {
     function handelButtonClick(){
         const message = Validation(email?.current?.value,password?.current?.value,name?.current?.value)
         setErrMessage(message)
+        if(message) return;
+        if(!isLogin){
+            //sign up process
+            createUserWithEmailAndPassword(auth, email?.current?.value, password?.current?.value)
+            .then((userCredential) => {
+                // Signed up 
+                const user = userCredential.user;
+                console.log(user)
+                // ...
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                setErrMessage(errorCode+": "+errMessage)
+                // ..
+            });
+        }
+        else{
+            //sign in process
+            signInWithEmailAndPassword(auth, email?.current?.value,password?.current?.value)
+            .then((userCredential) => {
+                // Signed in 
+                const user = userCredential.user;
+                console.log(user)
+                // ...
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                setErrMessage(errorCode+"\n"+errMessage)
+            });
+        }
     }
 
   return (

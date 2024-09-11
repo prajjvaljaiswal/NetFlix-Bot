@@ -5,3 +5,6 @@
 - Setup Sign-in / Sign-up
 - Appling Valitaion(email, password)
 - Appling Router
+- Installing Firebase pakeges
+- Setup Firebase
+- Completed firebase initialization
