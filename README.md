@@ -2,3 +2,6 @@
 - Create react app
 - Setup Tailwind
 - Create Login page
+- Setup Sign-in / Sign-up
+- Appling Valitaion(email, password)
+- Appling Router
