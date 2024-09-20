@@ -1,16 +1,20 @@
 import React, { useState, useRef } from 'react'
 import Header from './Header'
 import { Validation } from '../utils/validation';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth } from '../utils/Firebase.js';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 export const Login = () => {
 
+    const navigate = useNavigate()
     const [isLogin,setIsLogin] = useState(true)
     const email = useRef(null)
     const password = useRef(null)
     const name = useRef(null)
     const [errMessage,setErrMessage] = useState(null) 
+    const dispatch = useDispatch()
 
     function toggleSignInForm(){
         setIsLogin(!isLogin);
@@ -26,6 +30,20 @@ export const Login = () => {
             .then((userCredential) => {
                 // Signed up 
                 const user = userCredential.user;
+                updateProfile(user, {
+                    displayName: name?.current?.value
+                  }).then(() => {
+                    // Profile updated!
+
+                    // const {uid, email, displayName} = auth.currentUser;
+                    // dispatch(addUser({uid : uid, email : email, displayName: displayName}))//dispatch if ridux gone wrong 
+
+                    navigate("/browse")
+                    // ...
+                  }).catch((error) => {
+                    // An error occurred
+                    // ...
+                  });
                 // userCredential.user.displayName = name?.current?.value
                 //console.log(user)
                 // ...
