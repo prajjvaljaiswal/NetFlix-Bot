@@ -4,6 +4,8 @@
 import Body from "./components/Body";
 import { createBrowserRouter, RouterProvider, useNavigate } from "react-router-dom";
 import { Browse } from "./components/Browse";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
 
 function App() {
 
@@ -19,7 +21,9 @@ function App() {
   ])
   return (
     <div className="App">
-      <RouterProvider router={appLayout}/>
+      <Provider store={appStore}>
+        <RouterProvider router={appLayout}/>
+      </Provider>
     </div>
   );
 }

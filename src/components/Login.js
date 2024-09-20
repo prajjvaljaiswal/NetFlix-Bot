@@ -22,11 +22,12 @@ export const Login = () => {
         if(message) return;
         if(!isLogin){
             //sign up process
-            createUserWithEmailAndPassword(auth, email?.current?.value, password?.current?.value)
+            createUserWithEmailAndPassword(auth, email?.current?.value, password?.current?.value )
             .then((userCredential) => {
                 // Signed up 
                 const user = userCredential.user;
-                console.log(user)
+                // userCredential.user.displayName = name?.current?.value
+                //console.log(user)
                 // ...
             })
             .catch((error) => {
@@ -42,7 +43,7 @@ export const Login = () => {
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
-                console.log(user)
+                //console.log(user)
                 // ...
             })
             .catch((error) => {
