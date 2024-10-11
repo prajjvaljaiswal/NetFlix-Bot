@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 import Header from './Header'
-import { Validation } from '../utils/validation';
+import { Validation } from '../utils/validation.js';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth } from '../utils/Firebase.js';
 import { useNavigate } from 'react-router-dom';
@@ -34,7 +34,7 @@ export const Login = () => {
                     displayName: name?.current?.value
                   }).then(() => {
                     // Profile updated!
-
+                    
                     // const {uid, email, displayName} = auth.currentUser;
                     // dispatch(addUser({uid : uid, email : email, displayName: displayName}))//dispatch if ridux gone wrong 
 

@@ -2,7 +2,7 @@
 // import './App.css';
 
 import Body from "./components/Body";
-import { createBrowserRouter, RouterProvider, useNavigate } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Browse } from "./components/Browse";
 import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
