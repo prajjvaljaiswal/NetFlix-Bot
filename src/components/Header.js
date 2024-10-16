@@ -23,7 +23,7 @@ function Header() {
   }
 
   useEffect(()=>{
-    onAuthStateChanged(auth, (user) => {
+    const unsub = onAuthStateChanged(auth, (user) => {
       if (user) {
         
         const {uid, email, displayName} = user;
